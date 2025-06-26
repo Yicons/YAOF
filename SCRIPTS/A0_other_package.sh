@@ -99,7 +99,6 @@ UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main" "name"
 UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5" "name" "v2dat"
 UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main" "name"
 
-
 #更新软件包版本
 UPDATE_VERSION() {
 	local PKG_NAME=$1
