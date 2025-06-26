@@ -55,6 +55,7 @@ jobs:
       run: |
         cp -r ../SCRIPTS/. ./
         /bin/bash 02_prepare_package.sh
+        /bin/bash A0_other_package.sh
         /bin/bash 02_target_only.sh
         /bin/bash 04_remove_upx.sh
     - name: QTMDFW4
@@ -85,6 +86,10 @@ jobs:
         echo "TARGET_DEVICE_ARCH=${TARGET_DEVICE_ARCH}" >>$GITHUB_ENV
         latest_release="$(curl -s https://github.com/openwrt/openwrt/tags | grep -Eo "v[0-9\.]+\-*r*c*[0-9]*.tar.gz" | sed -n '/[2-9][4-9]/p' | sed -n 1p | sed 's/.tar.gz//g' | sed 's/v//g')"
         echo "latest_release=${latest_release}" >>$GITHUB_ENV
+    - name: Custom Settings
+      working-directory: ${{ github.workspace }}/openwrt
+      run: |
+        /bin/bash B0_setting.sh
     - name: Cache
       uses: HiGarfield/cachewrtbuild@main
       with:
