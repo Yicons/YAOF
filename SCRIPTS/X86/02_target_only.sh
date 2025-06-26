@@ -33,7 +33,7 @@ sed -i -e 's/^\(.\).*vermagic$/\1cp $(TOPDIR)\/.vermagic $(LINUX_DIR)\/.vermagic
 # 预配置一些插件
 cp -rf ../PATCH/files ./files
 
-find ./ -name *.orig | xargs rm -f
-find ./ -name *.rej | xargs rm -f
+# find ./ -name *.orig | xargs rm -f
+# find ./ -name *.rej | xargs rm -f
 
 exit 0
