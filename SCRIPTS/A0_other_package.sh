@@ -188,7 +188,7 @@ git_sparse_clone() {
 		foldername=$(basename "$folder")
 		echo -e "sparse-checkout: $foldername"
 		# 删除 feeds 中存在的同名目录
-		del_dirs=$(find "$pwd_path/feeds/luci" "$pwd_path/feeds/packages" -maxdepth 3 -type d -iname "*$foldername*" 2>/dev/null)
+		del_dirs=$(find "$pwd_path/feeds/luci" "$pwd_path/feeds/packages" "$pwd_path/package/new" -maxdepth 3 -type d -iname "*$foldername*" 2>/dev/null)
         if [[ -n "$del_dirs" ]]; then
             while read -r dir; do
                 rm -rf "$dir"
