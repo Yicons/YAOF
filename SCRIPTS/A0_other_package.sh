@@ -74,7 +74,6 @@ UPDATE_PACKAGE() {
 	fi
 
     rm -rf "$pwd_path/cache_repo"
-	ls
 	echo "---"
     ls $full_mvpath
     
