@@ -15,7 +15,7 @@ UPDATE_PACKAGE() {
 	for NAME in "${PKG_LIST[@]}"; do
 		# 查找匹配的目录
 		echo "Search directory: $NAME"
-		local FOUND_DIRS=$(find feeds/luci/ feeds/packages/ package/new/ -maxdepth 4 -type d -iname "*$NAME*" 2>/dev/null)
+		local FOUND_DIRS=$(find feeds/luci/ feeds/packages/ package/new/ -maxdepth 3 -type d -iname "*$NAME*" 2>/dev/null)
 
 		# 删除找到的目录
 		if [ -n "$FOUND_DIRS" ]; then
@@ -83,24 +83,21 @@ UPDATE_PACKAGE() {
 # 调用示例
 # UPDATE_PACKAGE "OpenAppFilter" "destan19/OpenAppFilter" "master" "" "custom_name1 custom_name2"
 # 这样会把原有的open-app-filter，luci-app-appfilter，oaf相关组件删除，不会出现coremark错误。
-UPDATE_PACKAGE "open-app-filter" "destan19/OpenAppFilter" "master" "" "luci-app-appfilter oaf"
+UPDATE_PACKAGE "open-app-filter" "destan19/OpenAppFilter" "master" "name" "luci-app-appfilter oaf"
 # UPDATE_PACKAGE "OpenAppFilter" "sbwml/OpenAppFilter" "master" "" "luci-app-appfilter oaf"
 
 # UPDATE_PACKAGE "包名" "项目地址" "项目分支" "pkg/name，可选，pkg为从大杂烩中单独提取包名插件；name为重命名为包名"
-UPDATE_PACKAGE "argon" "sbwml/luci-theme-argon" "openwrt-24.10"
+UPDATE_PACKAGE "argon" "sbwml/luci-theme-argon" "openwrt-24.10" "name"
 UPDATE_PACKAGE "passwall" "xiaorouji/openwrt-passwall" "main" "pkg"
-UPDATE_PACKAGE "homeproxy" "immortalwrt/homeproxy" "master"
-UPDATE_PACKAGE "passwall_packages" "xiaorouji/openwrt-passwall-packages" "main"
+UPDATE_PACKAGE "homeproxy" "immortalwrt/homeproxy" "master" "name"
+UPDATE_PACKAGE "passwall_packages" "xiaorouji/openwrt-passwall-packages" "main" "name"
 
-UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main"
-UPDATE_PACKAGE "luci-app-filemanager" "sbwml/luci-app-filemanager" "main"
-
-UPDATE_PACKAGE "openlist" "sbwml/luci-app-openlist" "main"
-UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main"
-UPDATE_PACKAGE "gecoosac" "lwb1978/openwrt-gecoosac" "main"
-UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5" "" "v2dat"
-UPDATE_PACKAGE "partexp" "sirpdboy/luci-app-partexp" "main"
-UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
+UPDATE_PACKAGE "luci-app-tailscale" "asvow/luci-app-tailscale" "main" "name"
+UPDATE_PACKAGE "luci-app-filemanager" "sbwml/luci-app-filemanager" "main" "name"
+UPDATE_PACKAGE "openlist" "sbwml/luci-app-openlist" "main" "name"
+UPDATE_PACKAGE "easytier" "EasyTier/luci-app-easytier" "main" "name"
+UPDATE_PACKAGE "mosdns" "sbwml/luci-app-mosdns" "v5" "name" "v2dat"
+UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main" "name"
 
 
 #更新软件包版本
