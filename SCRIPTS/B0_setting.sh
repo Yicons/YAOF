@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # WRT_THEME="argon"
-WRT_IP="10.10.2.42"
+WRT_IP="10.10.3.252"
 WRT_MARK=${GITHUB_REPOSITORY%%/*}
 WRT_DATE=$(TZ=UTC-8 date +"%y.%m.%d-%H.%M.%S")
 # WRT_MARK=""
@@ -74,3 +74,16 @@ sed -i "s/192\.168\.[0-9]*\.[0-9]*/$WRT_IP/g" $CFG_FILE
 # 		echo "qualcommax set up nowifi successfully!"
 # 	fi
 # fi
+
+#修改argon主题字体和颜色
+if [ -d *"luci-theme-argon"* ]; then
+	echo " "
+
+	cd ./luci-theme-argon/
+
+	sed -i "s/'0.2'/'0.3'/" ./luci-app-argon-config/root/etc/config/argon
+	sed -i "/font-weight:/ { /important/! { /\/\*/! s/:.*/: var(--font-weight);/ } }" $(find ./luci-theme-argon -type f -iname "*.css")
+	# sed -i "s/primary '.*'/primary '#31a1a1'/; s/'0.2'/'0.5'/; s/'none'/'bing'/; s/'600'/'normal'/" ./luci-app-argon-config/root/etc/config/argon
+
+	cd $PKG_PATH && echo "theme-argon has been fixed!"
+fi

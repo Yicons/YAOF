@@ -36,6 +36,12 @@ sed -i 's#20) \* 1000#60) \* 1000#g' feeds/luci/modules/luci-base/htdocs/luci-st
 rm -rf ./package/network/config/firewall4
 cp -rf ../openwrt_ma/package/network/config/firewall4 ./package/network/config/firewall4
 
+# 替换背景
+rm -rf ./package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
+wget -q -O bg.jpg https://raw.githubusercontent.com/jerrykuku/luci-theme-argon/master/htdocs/luci-static/argon/img/bg1.jpg
+convert bg.jpg ./package/luci-theme-argon/luci-theme-argon/htdocs/luci-static/argon/img/bg.webp
+rm bg.jpg
+
 ### 必要的 Patches ###
 # TCP optimizations
 cp -rf ../PATCH/kernel/6.7_Boost_For_Single_TCP_Flow/* ./target/linux/generic/backport-6.6/
